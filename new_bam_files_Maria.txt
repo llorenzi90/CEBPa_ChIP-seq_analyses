@@ -1,0 +1,5 @@
+/scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/27NOV_re_split/INP_p42_ER/INP_p42_ER.sorted.markedDups.bam
+/scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/27NOV_re_split/INP_p30_ER/INP_p30_ER.sorted.markedDups.bam
+/scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/27NOV_re_split/p42_ER/p42_ER.sorted.markedDups.bam
+/scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/27NOV_re_split/p30_ER/p30_ER.sorted.markedDups.bam
+/scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/27NOV_re_split/INP_p30_LPS_R3/INP_p30_LPS_R3.sorted.markedDups.bam
