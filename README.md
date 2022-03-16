@@ -51,7 +51,6 @@ H3K27ac is associated with the higher activation of transcription and therefore 
 
 
 
-
 ## Analyses  
 
 ### Data download 
@@ -105,9 +104,18 @@ samtools index -@ $PPN $sample.sorted.bam
 #### 6.Generate bigWig normalized by CPM with deeptools bamCoverage
 bamCoverage --numberOfProcessors $PPN --binSize 10 --normalizeUsing CPM --minMappingQuality 30 --bam $sample.sorted.bam -o $sample.sorted.bam.CPM.bw
 
-
+### Mark duplicates with Picard tools and run samtools stats
+ script: picard_mark_dups.sh
+ 
+ java -jar $picard MarkDuplicates INPUT=$sample.sorted.bam OUTPUT=$sample.sorted.markedDups.bam METRICS_FILE=$sample.dupmatrix TMP_DIR=/tmp/ CREATE_INDEX=true ASSUME_SORTED=true VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=FALSE TAGGING_POLICY=All
+ 
+ samtools stats $sample.sorted.markedDups.bam > $sample.sorted.markedDups.stats  
+ 
 ### Peak calling with macs2
-
+ scripts: macs2_NoModel_q_0.05.sh and run_macs2_pooled.sh (using macs2_pooled_sample_sheet.txt)  
+ Duplicates were removed in all cases (default for macs2)  
+macs2 callpeak -t $sample -c $control -n $outname -f BAMPE -g mm --qvalue 0.05 --nomodel --keep-dup 1  
+ 
 ### Differential binding analysis (DESeq2) 
 
 
