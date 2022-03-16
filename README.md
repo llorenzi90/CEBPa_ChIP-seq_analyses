@@ -58,7 +58,7 @@ H3K27ac is associated with the higher activation of transcription and therefore 
 ### Run MS5 
 check with file md5.txt
 
-### QC to generation to bigWig files for visualization
+### QC to generation of bigWig files for visualization
 ChIP-seq_fastq_to_bigWig_NOV2021_corrected_bad_indexvarname.sh
 
 #### 1.FASTQC
