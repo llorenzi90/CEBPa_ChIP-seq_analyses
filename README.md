@@ -142,4 +142,6 @@ bamCoverage --numberOfProcessors $PPN --binSize 10 --normalizeUsing CPM --minMap
  script: DESeq2.R
  PCA was performed using R base function prcomp, feeding it counts scaled by library size and using scale. = T
 *scale. a logical value indicating whether the variables should be scaled to have unit variance before the analysis takes place. The default is FALSE for consistency with S, but in general scaling is advisable. Alternatively, a vector of length equal the number of columns of x can be supplied. The value is passed to scale.per million*   
- plots file: shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/PCA_plots/PCA_CPM_merged_peaks_EV_p30_p42_LPS_UT.pdf
+ plots files: 
+ all peaks: shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/PCA_plots/PCA_CPM_merged_peaks_EV_p30_p42_LPS_UT.pdf 
+ top 500 more variable peaks: shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/PCA_plots/PCA_CPM_merged_peaks_EV_p30_p42_LPS_UT.top500moreVarPeaks.pdf
