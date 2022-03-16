@@ -93,9 +93,9 @@ The maximum fragment length for valid paired-end alignments. E.g. if -X 100 is s
 The larger the difference between -I and -X, the slower Bowtie 2 will run. This is because larger differences between -I and -X require that Bowtie 2 scan a larger window to determine if a concordant alignment exists. For typical fragment length ranges (200 to 400 nucleotides), Bowtie 2 is very efficient.  
 Default: 500.  
  
-As of Bowtie2 v2.4.0, individual preset values can be overridden by providing the specific options e.g. the configured seed length of 20 in the [--very-senitive] preset above can be changed to 25 by also specifying the -L 25 parameter anywhere on the command line.  
+As of Bowtie2 v2.4.0, individual preset values can be overridden by providing the specific options e.g. the configured seed length of 20 in the [--very-senitive] preset above can be changed to 25 by also specifying the -L 25 parameter anywhere on the command line.   
  
-#### 4.Convert to bam while sorting
+#### 4.Convert to bam while sorting  
 samtools sort -@ $PPN -O bam -o $sample.sorted.bam $sam
 
 #### 5.Samtools index
