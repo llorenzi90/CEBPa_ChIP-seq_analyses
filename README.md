@@ -126,7 +126,11 @@ bamCoverage --numberOfProcessors $PPN --binSize 10 --normalizeUsing CPM --minMap
 ### Differential binding analysis (DESeq2) 
  #### 1.Merge peaks generated from pooled replicates
  macs2 peaks generated previously from pooled replicates were merged in order to have a single peak set to perform comparable quantification across all samples:  
- peaks from all replicates (EV,p30,p42 both LPS and UT, see list_peaks_files_to_merge.txt) were merged with bedtools merge, script:  merge_peaks_p30_p42_both_LPSandUT.sh
+ peaks from all replicates (EV,p30,p42 both LPS and UT, see list_peaks_files_to_merge.txt) were merged with bedtools merge, script:  merge_peaks_p30_p42_both_LPSandUT.sh 
+ 
+ 
+ This results in 177.106 peaks  
+ 
  
  #### 2.Quantify reads in bam files of individual samples across merged peaks
  scripts: csaw_regionCounts_Nsamples.R, count_merged_macs2peaks_csaw.sh
@@ -134,6 +138,8 @@ bamCoverage --numberOfProcessors $PPN --binSize 10 --normalizeUsing CPM --minMap
  
  output count file: shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/merged_peaks_EV.p30.p42_LPS.UT.counts  
  
- #### 3.Perform DESEq2 
- script: 
-
+ #### 3.Perform PCA and DESeq2 
+ script: DESeq2.R
+ PCA was performed using R base function prcomp, feeding it counts scaled by library size and using scale. = T
+*scale. a logical value indicating whether the variables should be scaled to have unit variance before the analysis takes place. The default is FALSE for consistency with S, but in general scaling is advisable. Alternatively, a vector of length equal the number of columns of x can be supplied. The value is passed to scale.per million*   
+ plots file: shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/PCA_plots/PCA_CPM_merged_peaks_EV_p30_p42_LPS_UT.pdf
