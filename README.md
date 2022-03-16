@@ -148,20 +148,20 @@ bamCoverage --numberOfProcessors $PPN --binSize 10 --normalizeUsing CPM --minMap
  all peaks: shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/PCA_plots/PCA_CPM_merged_peaks_EV_p30_p42_LPS_UT.pdf 
  top 500 more variable peaks: shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/PCA_plots/PCA_CPM_merged_peaks_EV_p30_p42_LPS_UT.top500moreVarPeaks.pdf
 
-**DESeq2 comparisons**
+**DESeq2 comparisons**  
  We want to compare p30 vs p42 when treated with LPS and when not treated:
-based on the useful Deseq2 vignette; https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions
+based on the useful Deseq2 vignette; https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions  
  I created a 'group' variable  
 
-dtp$group <- factor(paste0(dtp$vector,dtp$LPS))
+dtp$group <- factor(paste0(dtp$vector,dtp$LPS))  
 ddsMat <- DESeqDataSetFromMatrix(countData = countdata,
                                  colData = dtp,
-                                 design = ~ group)
-dds <- DESeq(ddsMat)
+                                 design = ~ group)  
+dds <- DESeq(ddsMat)  
 
-ctsts <- list(c("group", "p30UT", "p42UT"),
-              c("group", "p30LPS", "p42LPS"),
-              c("group","p42LPS","EVLPS"),
-              c("group","p30LPS","EVLPS"),
-              c("group","p42UT","EVUT"),
-              c("group","p30UT","EVUT"))
+ctsts <- list(c("group", "p30UT", "p42UT"),  
+              c("group", "p30LPS", "p42LPS"),  
+              c("group","p42LPS","EVLPS"),  
+              c("group","p30LPS","EVLPS"),  
+              c("group","p42UT","EVUT"),  
+              c("group","p30UT","EVUT"))  
