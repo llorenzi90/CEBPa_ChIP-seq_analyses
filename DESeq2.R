@@ -57,6 +57,37 @@ ggplot(dtp, aes(x=PC1,y=PC2,col=rep)) +
   geom_point(aes(shape=vector)) +theme_classic()+ xlab(paste0("PC1(",percvar[1],"% var)"))+
   ylab(paste0("PC2(",percvar[2],"% var)"))
 dev.off()
+
+##Add pca using 500 most variable peaks (this is what DESeq2 package does by default and
+#what I have been doing for other analyses) as a comparison
+rv <- rowVars(t(scaled_counts))
+ntop=500 #select only the top 500 genes with highest variance
+#This is optional, is the default of the DESeq2 package
+select <- order(rv, decreasing = TRUE)[1:ntop]
+top500variable <- scaled_counts[,select]
+pca <- prcomp(top500variable,scale. = T)
+dtp <- as.data.frame(pca$x)
+dtp$samples <- rownames(dtp)
+dtp$vector=gsub("(.*)_(.*)_(.*)","\\1",dtp$samples)
+dtp$vector[dtp$vector=="P42"] <- "p42"
+dtp$LPS=gsub("(.*)_(.*)_(.*)","\\2",dtp$samples)
+dtp$rep=gsub("(.*)_(.*)_(.*)","\\3",dtp$samples)
+
+#percent variance:
+percvar=round(pca$sdev^2/sum(pca$sdev^2)*100,2)
+
+pdf("PCA_plots/PCA_CPM_merged_peaks_EV_p30_p42_LPS_UT.top500moreVarPeaks.pdf",onefile = T)
+ggplot(dtp, aes(x=PC1,y=PC2,col=vector)) + 
+  geom_point() +theme_classic() + xlab(paste0("PC1(",percvar[1],"% var)"))+
+  ylab(paste0("PC2(",percvar[2],"% var)"))
+ggplot(dtp, aes(x=PC1,y=PC2,col=LPS)) + 
+  geom_point(aes(shape=vector)) +theme_classic()+ xlab(paste0("PC1(",percvar[1],"% var)"))+
+  ylab(paste0("PC2(",percvar[2],"% var)"))
+ggplot(dtp, aes(x=PC1,y=PC2,col=rep)) + 
+  geom_point(aes(shape=vector)) +theme_classic()+ xlab(paste0("PC1(",percvar[1],"% var)"))+
+  ylab(paste0("PC2(",percvar[2],"% var)"))
+dev.off()
+
 #DESeq2 comparisons. We want to compare p30 vs p42 when treated with
 #LPS and when not treated:
 #based on the useful Deseq2 vignette; https://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#interactions

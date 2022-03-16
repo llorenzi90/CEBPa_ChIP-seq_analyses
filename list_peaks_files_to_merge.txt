@@ -1,0 +1,6 @@
+EV_LPS.pooled.NoModel_q_0.05_peaks.narrowPeak
+EV_UT.pooled.NoModel_q_0.05_peaks.narrowPeak
+p30_LPS.pooled.NoModel_q_0.05_peaks.narrowPeak
+p30_UT.pooled.NoModel_q_0.05_peaks.narrowPeak
+p42_LPS.pooled.NoModel_q_0.05_peaks.narrowPeak
+p42_UT.pooled.NoModel_q_0.05_peaks.narrowPeak
