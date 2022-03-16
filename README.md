@@ -112,10 +112,19 @@ bamCoverage --numberOfProcessors $PPN --binSize 10 --normalizeUsing CPM --minMap
  samtools stats $sample.sorted.markedDups.bam > $sample.sorted.markedDups.stats  
  
 ### Peak calling with macs2
- scripts: macs2_NoModel_q_0.05.sh and run_macs2_pooled.sh (using macs2_pooled_sample_sheet.txt)  
- Duplicates were removed in all cases (default for macs2)  
-macs2 callpeak -t $sample -c $control -n $outname -f BAMPE -g mm --qvalue 0.05 --nomodel --keep-dup 1  
+ **Individual replicates:**  
+ macs2_NoModel_q_0.05.sh  
+ *macs2 callpeak -t $sample -c $control -n $outname -f BAMPE -g mm --qvalue 0.05 --nomodel --keep-dup 1*
+
+ **Pooled replicates:**  
+ run_macs2_pooled.sh (using macs2_pooled_sample_sheet.txt generated with parse_files_macs2_pooled_reps.R)
+ macs2 peaks were generated from pooled replicates for each vector-LPS combination: for example for p42_LPS the command used was:  
+  *macs2 callpeak -t /scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/P42_LPS_R1/P42_LPS_R1.sorted.markedDups.bam /scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/p42_LPS_R2/p42_LPS_R2.sorted.markedDups.bam -c /scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/INP_P42_LPS_R1/INP_P42_LPS_R1.sorted.markedDups.bam /scratch/llorenzi/Maria_CEBPa_ChIP-seq_samples/INP_p42_LPS_R2/INP_p42_LPS_R2.sorted.markedDups.bam -n p42_LPS.pooled.NoModel_q_0.05 -f BAMPE -g mm --qvalue 0.05 --nomodel --keep-dup 1*
+   
+ ##### Duplicates were removed in all cases (default for macs2)  
  
 ### Differential binding analysis (DESeq2) 
-
+ #### 1.Merge peaks generated from pooled replicates
+ macs2 peaks generated previously from pooled replicates were merged in order to have a single peak set to perform comparable quantification across all samples:  
+ peaks from all replicates (EV,p30,p42 both LPS and UT, see list_peaks_files_to_merge.txt) were merged with bedtools merge, script:  merge_peaks_p30_p42_both_LPSandUT.sh
 
