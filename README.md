@@ -106,13 +106,8 @@ samtools index -@ $PPN $sample.sorted.bam
 bamCoverage --numberOfProcessors $PPN --binSize 10 --normalizeUsing CPM --minMappingQuality 30 --bam $sample.sorted.bam -o $sample.sorted.bam.CPM.bw
 
 
-### Read counts on GENCODE transcriptome vM27
-htseq_count.sh, generate_count_matrix.R  
-conversion of ENSEMBL ids to gene names: convert_ENSgene_id_to_gene_name.R  
-normalization (FPKM and TPM): calculate_gene_length.R, generate_FPKM_and_TPM.R
+### Peak calling with macs2
 
-### Differential gene expression (DESeq2) and GSEA
-Scripts to match ENSEMBL gene IDs and NCBI IDs in mouse gene sets RData files (source: https://bioinf.wehi.edu.au/MSigDB/) and to generate gmt files: create_geneID_conversion_table_for_GSEA.R, generate_gmt_files_from_RData_mouse_gene_sets.R
+### Differential binding analysis (DESeq2) 
 
-#### DGEA:  
-DESeq2_CEBPa.R
+
