@@ -110,13 +110,18 @@ summary(results(dds,contrast = c("group","p30LPS","EVLPS")))
 summary(results(dds,contrast = c("group","p42LPS","EVLPS")))
 summary(results(dds,contrast = c("group","p30UT","EVUT")))
 summary(results(dds,contrast = c("group","p42UT","EVUT")))
+# 
+# ctsts <- list(c("group", "p30UT", "p42UT"),
+#               c("group", "p30LPS", "p42LPS"),
+#               c("group","p42LPS","EVLPS"),
+#               c("group","p30LPS","EVLPS"),
+#               c("group","p42UT","EVUT"),
+#               c("group","p30UT","EVUT"))
 
-ctsts <- list(c("group", "p30UT", "p42UT"),
-              c("group", "p30LPS", "p42LPS"),
-              c("group","p42LPS","EVLPS"),
-              c("group","p30LPS","EVLPS"),
-              c("group","p42UT","EVUT"),
-              c("group","p30UT","EVUT"))
+#17 marzo: p30LPSvsp30UT, p42LPSvsp42UT y EVLPSvsEV UT
+ctsts <- list(c("group", "p30LPS", "p30UT"),
+              c("group", "p42LPS", "p42UT"),
+              c("group", "EVLPS", "EVUT"))
 dir.create("DESeq2_results")
 setwd("DESeq2_results/")
 for (cts in ctsts) {
@@ -131,3 +136,4 @@ for (cts in ctsts) {
   write.csv(res,paste0(nam,"_DESeq2_res.noNAs.csv"))
   
 }
+write.csv(dtp[,13:17],"~/shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/H3K27ac_sample_metadata.txt",row.names = F)
