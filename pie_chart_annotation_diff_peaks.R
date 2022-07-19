@@ -1,4 +1,8 @@
+## Notes: First version of this script was WRONG!!! I used the human annotation instead of mouse annotation!!
+##   This has been corrected now (20 may 22)
+
 p30UTvsp42UT_DESeq2_res.noNAs.annotated <- read.csv("~/shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/DESeq2_results/annotated_results/p30UTvsp42UT_DESeq2_res.noNAs.annotated.csv")
+p30UTvsp42UT_DESeq2_res.noNAs.annotated <- read.csv("~/shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/K27/macs2_merged_peaks_counts/DESeq2_results/annotated_results/p30UTvsp42UT_DESeq2_res.noNAs.annotated.csv")
 
 p30UTvsp42UT_DESeq2_res.noNAs.annotated$simplified_annot <- p30UTvsp42UT_DESeq2_res.noNAs.annotated$annotation
 p30UTvsp42UT_DESeq2_res.noNAs.annotated$simplified_annot[grep("Exon",p30UTvsp42UT_DESeq2_res.noNAs.annotated$annotation)] <- "exon"
@@ -19,7 +23,7 @@ source("~/shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/scripts/cbPalette.R"
 library(ggplot2)
 library(ggrepel)
 library(tidyverse)
-setwd("~/shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/macs2_merged_peaks_counts/DESeq2_results/")
+setwd("~/shares/INVESTIGACIO/Cuartero Group/CUARTERO GROUP/CEBPa/ChIP-seq/analyses/K27/macs2_merged_peaks_counts/DESeq2_results/")
 dir.create("pie_charts_annotation_differential_peaks")
 setwd("pie_charts_annotation_differential_peaks/")
 dir.create("p30UTvsp42UT")
